@@ -4,9 +4,6 @@ agent:
   machine:
     type: f1-standard-2
     os_image: ubuntu2404
-  containers:
-    - name: main
-      image: 'semaphoreci/ubuntu:20.04'
 global_job_config:
   prologue:
     commands:
@@ -24,6 +21,10 @@ blocks:
             - kubectl apply -f deployment-green.yml
             - kubectl apply -f service-green.yml
             - kubectl rollout status deployment/flask-app-green
+      agent:
+        machine:
+          type: f1-standard-2
+          os_image: ubuntu2404
   - name: Verify
     task:
       jobs:
