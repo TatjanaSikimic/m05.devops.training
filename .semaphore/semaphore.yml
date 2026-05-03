@@ -53,4 +53,5 @@ blocks:
       jobs:
         - name: Verify the service
           commands:
+            - cd 1-deployment/
             - kubectl get svc flask-app
