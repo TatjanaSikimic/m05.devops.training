@@ -14,13 +14,12 @@ blocks:
       jobs:
         - name: Deploy green
           commands:
-            - cd 2-blue-green-deployment/
+            - cd 3-canary-deployment/
             - kubectl config use-context $(kubectl config get-contexts -o name)
             - kubectl create namespace "g2-tatjana" || true
             - kubectl config set-context --current --namespace="g2-tatjana"
-            - kubectl apply -f deployment-green.yml
-            - kubectl apply -f service-green.yml
-            - kubectl rollout status deployment/flask-app-green
+            - kubectl apply -f deployment-canary.yml
+            - kubectl rollout status deployment/flask-app-canary
       agent:
         machine:
           type: f1-standard-2
@@ -32,7 +31,7 @@ blocks:
       jobs:
         - name: Verify Green
           commands:
-            - cd 2-blue-green-deployment/
+            - cd 3-canary-deployment/
             - kubectl get svc flask-app -n g2-tatjana
       secrets:
         - name: kubeconfig
