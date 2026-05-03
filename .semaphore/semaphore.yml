@@ -53,7 +53,7 @@ blocks:
       jobs:
         - name: Verify the service
           commands:
-            - cd cd 3-canary-deployment/
+            - cd 3-canary-deployment/
             - kubectl get svc flask-app -n g2-tatjana
       secrets:
         - name: kubeconfig
