@@ -7,6 +7,10 @@ agent:
   containers:
     - name: main
       image: 'semaphoreci/ubuntu:20.04'
+global_job_config:
+  prologue:
+    commands:
+      - checkout
 blocks:
   - name: Deploy
     task:
