@@ -39,8 +39,8 @@ blocks:
           commands:
             - echo "$KUBECONFIG_BASE64" | base64 --decode > ~/.kube/config
             - chmod 600 ~/.kube/config
-            - kubectl create namespace "g2-tatjana" || true
             - kubectl config use-context $(kubectl config get-contexts -o name)
+            - kubectl create namespace "g2-tatjana" || true
             - kubectl config set-context --current --namespace="g2-tatjana"
             - kubectl apply -f deployment.yml
             - kubectl apply -f service.yml
