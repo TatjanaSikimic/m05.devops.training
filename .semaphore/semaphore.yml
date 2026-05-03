@@ -54,6 +54,6 @@ blocks:
         - name: Verify the service
           commands:
             - cd 1-deployment/
-            - kubectl get svc flask-app
+            - kubectl get svc flask-app -n g2-tatjana
       secrets:
         - name: kubeconfig
