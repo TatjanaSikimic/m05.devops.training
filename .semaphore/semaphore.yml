@@ -23,6 +23,8 @@ blocks:
       jobs:
         - name: "\U0001F7E2Build and Push image"
           commands:
+            - cd 1-deployment/Dockerfile
+            - echo $PWD
             - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
             - 'docker build -t $DOCKER_USERNAME/my-flask-image:latest .'
             - 'docker push $DOCKER_USERNAME/my-flask-image:latest'
