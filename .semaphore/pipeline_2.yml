@@ -25,6 +25,8 @@ blocks:
         machine:
           type: f1-standard-2
           os_image: ubuntu2404
+      secrets:
+        - name: kubeconfig
   - name: Verify
     task:
       jobs:
@@ -32,3 +34,5 @@ blocks:
           commands:
             - cd 2-blue-green-deployment/
             - kubectl get svc flask-app -n g2-tatjana
+      secrets:
+        - name: kubeconfig
