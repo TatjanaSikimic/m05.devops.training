@@ -12,7 +12,7 @@ blocks:
   - name: Deploy
     task:
       jobs:
-        - name: Deploy green
+        - name: Deploy stable
           commands:
             - cd 3-canary-deployment/
             - kubectl config use-context $(kubectl config get-contexts -o name)
@@ -29,7 +29,7 @@ blocks:
   - name: Verify
     task:
       jobs:
-        - name: Verify Green
+        - name: Verify Stable
           commands:
             - cd 3-canary-deployment/
             - kubectl get svc flask-app -n g2-tatjana

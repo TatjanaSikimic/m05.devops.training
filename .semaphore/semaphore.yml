@@ -58,5 +58,5 @@ blocks:
       secrets:
         - name: kubeconfig
 promotions:
-  - name: Deploy Green
+  - name: Deploy Stable
     pipeline_file: pipeline_2.yml
