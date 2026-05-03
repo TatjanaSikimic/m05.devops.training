@@ -57,3 +57,6 @@ blocks:
             - kubectl get svc flask-app -n g2-tatjana
       secrets:
         - name: kubeconfig
+promotions:
+  - name: Deploy Green
+    pipeline_file: pipeline_2.yml

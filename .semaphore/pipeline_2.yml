@@ -1,0 +1,29 @@
+version: v1.0
+name: Deploy Green
+agent:
+  machine:
+    type: f1-standard-2
+    os_image: ubuntu2404
+  containers:
+    - name: main
+      image: 'semaphoreci/ubuntu:20.04'
+blocks:
+  - name: Deploy
+    task:
+      jobs:
+        - name: Deploy green
+          commands:
+            - cd 2-blue-green-deployment/
+            - kubectl config use-context $(kubectl config get-contexts -o name)
+            - kubectl create namespace "g2-tatjana" || true
+            - kubectl config set-context --current --namespace="g2-tatjana"
+            - kubectl apply -f deployment-green.yml
+            - kubectl apply -f service-green.yml
+            - kubectl rollout status deployment/flask-app-green
+  - name: Verify
+    task:
+      jobs:
+        - name: Verify Green
+          commands:
+            - cd 2-blue-green-deployment/
+            - kubectl get svc flask-app -n g2-tatjana
